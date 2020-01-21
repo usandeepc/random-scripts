@@ -1,8 +1,8 @@
 """python based cgi script to upload file to apache web server"""
-#!/usr/bin/env python3
 import cgi
-import os
 import cgitb
+import os
+
 cgitb.enable()
 form = cgi.FieldStorage()
 # Get filename here.
