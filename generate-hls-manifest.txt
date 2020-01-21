@@ -10,3 +10,15 @@ URL="rtmp://example.com/app/channel" \
   STREAM_SIZE=342x192 \
   eval ffmpeg -f x11grab -s '$CAPTURE_SIZE' -r '$FRAME_RATE' -i :0.0 \
        -c:v libx264 -preset ultrafast -pix_fmt yuv420p -s '$STREAM_SIZE' -f flv '$URL'
+#Nginx Server Snippet
+rtmp {
+        server {
+                listen 1935;
+                chunk_size 4096;
+
+                application live {
+                        live on;
+                        record off;
+                }
+        }
+}
