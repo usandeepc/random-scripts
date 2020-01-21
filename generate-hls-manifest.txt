@@ -1,0 +1,4 @@
+/ffmpeg -listen 1 -i rtmp://example.com/app/channel \
+    -c:v libx264 -crf 21 -preset veryfast -g 25 -sc_threshold 0 \
+    -c:a aac -b:a 128k -ac 2 \
+    -f hls -hls_time 4 -hls_playlist_type event stream.m3u8
