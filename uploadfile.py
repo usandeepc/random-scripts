@@ -1,3 +1,4 @@
+#python based cgi script to upload file to apache web server
 #!/usr/bin/env python3
 import cgi
 import os
