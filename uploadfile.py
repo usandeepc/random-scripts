@@ -18,5 +18,6 @@ else:
     message = 'No file was uploaded'
 print("Content-Type: text/plain\n\n")
 print(message)
-#Upload using Curl
-#curl -F filename=@node_exporter-0.18.1.linux-amd64.tar.gz http://192.168.224.198/cgi-bin/uploadfile.py
+#   Upload using Curl
+#   curl -F filename=@node_exporter-0.18.1.linux-amd64.tar.gz http://192.168.
+#   224.198/cgi-bin/uploadfile.py
