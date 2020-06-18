@@ -1,0 +1,18 @@
+[
+  {
+    "targets": [
+      "host1:9100"
+    ],
+    "labels": {
+      "job": "node","role":"jenkins"
+    }
+  },
+  {
+    "targets": [
+      "host2:9100"
+    ],
+    "labels": {
+      "job": "node","role":"nginx"
+    }
+  }
+]
