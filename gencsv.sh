@@ -1,4 +1,4 @@
-#!/bin/bash
+
 if [ $# -eq 1 ];
 then
    export NO_OF_ENTRIES="$1"
