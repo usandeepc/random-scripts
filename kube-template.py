@@ -60,7 +60,7 @@ def take_snapshot(volume_id):
     return snapshot.id
 
 
-def create_vsc(ide_name, snapshot_id="snap-0c2ae051f59298ff9"):
+def create_vsc(ide_name, snapshot_id):
     snaphotcontent_body = {
         "apiVersion": "snapshot.storage.k8s.io/v1",
         "kind": "VolumeSnapshotContent",
@@ -141,18 +141,19 @@ def main():
     if len(sys.argv) <= 1:
         print("Pass the IDE as an argument")
     else:
-        print("In-tree to CSI Migration started for IDE" + sys.argv[1])
-        pv_name = get_pv_name(sys.argv[1]);
-        print(pv_name)
-        volume_id = get_volume_ids(pv_name);
-        print(volume_id);
-        snapshot_id = take_snapshot(volume_id);
-        print(snapshot_id);
-        create_vsc(sys.argv[1]);
-        create_vs(sys.argv[1]);
-        delete_pvc(sys.argv[1]);
-        time.sleep(60);
-        create_pvc(sys.argv[1]);
+        ide_name = sys.argv[1]
+        print("In-tree to CSI Migration started for IDE" + ide_name)
+        pv_name = get_pv_name(ide_name)
+        print("PV Name: "+pv_name)
+        volume_id = get_volume_ids(pv_name)
+        print("AWS Volume Id: "+volume_id)
+        snapshot_id = take_snapshot(volume_id)
+        print("Created AWS Snapshot Id: "+snapshot_id)
+        create_vsc(ide_name, snapshot_id)
+        create_vs(ide_name)
+        delete_pvc(ide_name)
+        time.sleep(60)
+        create_pvc(ide_name)
 
 
 if __name__ == "__main__":
