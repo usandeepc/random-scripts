@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mimir
+  name: mimir
+  namespace: observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mimir
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mimir
+    spec:
+      serviceAccountName: mimir
+      containers:
+      - image: grafana/mimir:latest
+        name: mimir
+        command: ["mimir","-config.file=/etc/mimir-config.yaml"]
+        volumeMounts:
+        - name: config
+          mountPath: "/etc/mimir-config.yaml"
+          subPath: mimir-config.yaml
+      volumes:
+      - name: config
+        configMap:
+          name: mimir-config
+          defaultMode: 420
